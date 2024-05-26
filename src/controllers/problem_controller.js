@@ -1,6 +1,5 @@
 const {StatusCodes} = require('http-status-codes');
-const HandleError = require('../errors/index');
-
+const {NotImplemented} = require('../errors')
 
 function pingProblemController(req,res){
   return res.json({message:'Ping controller is running...'})
@@ -8,7 +7,7 @@ function pingProblemController(req,res){
 
 function addProblem(req,res,next){
   try {
-    throw new HandleError.NotImplemented('addProblem')
+    throw new NotImplemented('addProblem')
   } catch (error) {
     next(error)
   }
