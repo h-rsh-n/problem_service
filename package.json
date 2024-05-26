@@ -1,0 +1,11 @@
+{
+  "name": "problem_service",
+  "version": "1.0.0",
+  "description": "This is an admin service to manage the problem ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
