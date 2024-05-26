@@ -1,6 +1,7 @@
 function pingProblemController(req,res){
   return res.json({message:'Ping controller is running...'})
 }
+
 function addProblem(req,res){
 
 }
