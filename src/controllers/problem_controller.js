@@ -54,10 +54,22 @@ async function getProblems(req,res,next){
   }
 }
 
-function deleteProblem(req,res,next){
-  return res.status(StatusCodes.NOT_IMPLEMENTED).json({
-    msg:'Not implemented'
-  })
+async function deleteProblem(req,res,next){
+  try {
+    const deleteproblem = await problemService.deleteProblem(req.params.id);
+    console.log('controller',deleteproblem)
+    if(!deleteproblem){
+      throw new NotFound('Problem',req.params.id);
+    }
+    return res.status(StatusCodes.OK).json({
+      success:true,
+      message:`Problem with id:${req.params.id} deleted successfully`,
+      error:{},
+      data:deleteproblem
+    })
+  } catch (error) {
+    next(error);
+  }
 }
 
 function updateProblem(req,res,next){

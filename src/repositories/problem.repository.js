@@ -20,6 +20,12 @@ class ProblemRepository{
     const problems = await Problem.find({});
     return problems;
   }
+
+  async deleteProblem(deleteId){
+    const deleteproblem = await Problem.findByIdAndDelete(deleteId);
+    console.log(deleteproblem)
+    return deleteproblem;
+  }
 }
 
 module.exports = ProblemRepository;
