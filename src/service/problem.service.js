@@ -27,6 +27,11 @@ class ProblemService{
     const deleteproblem = await this.problemRepository.deleteProblem(deletedId);
     return deleteproblem;
   }
+
+  async updateProblem(updateId,updateData){
+    const updateproblem = await this.problemRepository.updateProblem(updateId,updateData);
+    return updateproblem;
+  }
 }
 
 module.exports = ProblemService;

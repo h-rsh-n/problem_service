@@ -72,10 +72,21 @@ async function deleteProblem(req,res,next){
   }
 }
 
-function updateProblem(req,res,next){
-  return res.status(StatusCodes.NOT_IMPLEMENTED).json({
-    msg:'Not implemented'
-  })
+async function updateProblem(req,res,next){
+  try {
+    const updateproblem = await problemService.updateProblem(req.params.id,req.body);
+    if(!updateproblem){
+      throw new NotFound('Problem',req.params.id);
+    }
+    return res.status(StatusCodes.OK).json({
+      success:true,
+      message:`Problem with id:${req.params.id} updated successfully`,
+      error:{},
+      data:updateproblem
+    })
+  } catch (error) {
+    next(error)
+  }
 }
 
 module.exports={

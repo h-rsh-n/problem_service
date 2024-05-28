@@ -26,6 +26,11 @@ class ProblemRepository{
     console.log(deleteproblem)
     return deleteproblem;
   }
+
+  async updateProblem(updateId,updateData){
+    const updateproblem = await Problem.findByIdAndUpdate(updateId,updateData,{new:true});
+    return updateproblem;
+  }
 }
 
 module.exports = ProblemRepository;
