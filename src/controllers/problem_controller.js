@@ -1,4 +1,4 @@
-const {NotImplemented,NotFound} = require('../errors')
+const {NotFound} = require('../errors')
 const {ProblemService} = require('../service')
 const {ProblemRepository} = require('../repositories');
 const { StatusCodes } = require('http-status-codes');

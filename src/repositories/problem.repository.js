@@ -1,4 +1,3 @@
-const { NotFound } = require('../errors');
 const {Problem} = require('../models')
 
 class ProblemRepository{
