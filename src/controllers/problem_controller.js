@@ -2,6 +2,7 @@ const {NotFound} = require('../errors')
 const {ProblemService} = require('../service')
 const {ProblemRepository} = require('../repositories');
 const { StatusCodes } = require('http-status-codes');
+const logger = require('../config/logger.config');
 
 const problemService = new ProblemService(new ProblemRepository());
 
@@ -27,6 +28,7 @@ async function getProblem(req,res,next){
   try {
     const problem = await problemService.getProblem(req.params.id);
     if(!problem){
+      logger.error(`Problem with id:${req.params.id} not found`)
       throw new NotFound('Problem',req.params.id)
     }
     return res.status(StatusCodes.OK).json({
@@ -59,6 +61,7 @@ async function deleteProblem(req,res,next){
     const deleteproblem = await problemService.deleteProblem(req.params.id);
     console.log('controller',deleteproblem)
     if(!deleteproblem){
+      logger.error(`Problem with id:${req.params.id} not found`)
       throw new NotFound('Problem',req.params.id);
     }
     return res.status(StatusCodes.OK).json({
@@ -76,6 +79,7 @@ async function updateProblem(req,res,next){
   try {
     const updateproblem = await problemService.updateProblem(req.params.id,req.body);
     if(!updateproblem){
+      logger.error(`Problem with id:${req.params.id} not found`)
       throw new NotFound('Problem',req.params.id);
     }
     return res.status(StatusCodes.OK).json({

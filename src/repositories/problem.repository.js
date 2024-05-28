@@ -22,7 +22,6 @@ class ProblemRepository{
 
   async deleteProblem(deleteId){
     const deleteproblem = await Problem.findByIdAndDelete(deleteId);
-    console.log(deleteproblem)
     return deleteproblem;
   }
 
