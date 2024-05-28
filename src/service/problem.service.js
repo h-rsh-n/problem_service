@@ -8,16 +8,14 @@ class ProblemService{
 
   async createProblem(problemData){
     //md can cantain html, can cantain malicious code
-    try {
-      //console.log("service",problemData)
-      problemData.description = sanitizeMarkdown(problemData.description);
-      const problem = await this.problemRepository.createProblem(problemData);
-      //console.log(problem)
-      return problem;
-    } catch (error) {
-      console.log("error in service layer",error)
-      throw error
-    }
+    problemData.description = sanitizeMarkdown(problemData.description);
+    const problem = await this.problemRepository.createProblem(problemData);
+    return problem;
+  }
+
+  async getProblem(problemId){
+    const problem = await this.problemRepository.getProblem(problemId);
+    return problem;
   }
 }
 

@@ -1,4 +1,4 @@
-const {NotImplemented} = require('../errors')
+const {NotImplemented,NotFound} = require('../errors')
 const {ProblemService} = require('../service')
 const {ProblemRepository} = require('../repositories');
 const { StatusCodes } = require('http-status-codes');
@@ -23,10 +23,21 @@ async function addProblem(req,res,next){
   }
 }
 
-function getProblem(req,res,next){
-  return res.status(StatusCodes.NOT_IMPLEMENTED).json({
-    msg:'Not implemented'
-  })
+async function getProblem(req,res,next){
+  try {
+    const problem = await problemService.getProblem(req.params.id);
+    if(!problem){
+      throw new NotFound('Problem',id);
+    }
+    return res.status(StatusCodes.OK).json({
+      success:true,
+      message:`Successfully retrieved the problem with id:${req.params.id}`,
+      error:{},
+      data:problem
+    })
+  } catch (error) {
+    next(error)
+  }
 }
 
 function getProblems(req,res,next){
