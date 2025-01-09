@@ -5,6 +5,7 @@ class ProblemRepository{
       const problem = await Problem.create({
         title:problemData.title,
         description:problemData.description,
+        codeStubs:problemData.codeStubs,
         testCases:(problemData.testCases)?problemData.testCases:[]
       })
       return problem;
